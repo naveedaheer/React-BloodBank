@@ -23,12 +23,11 @@ import {Link} from 'react-router-dom'
 //     }
 // }
 
-class SignupComponent extends React.Component {
+class SignInComponent extends React.Component {
     
     constructor() {
         super();
         this.state = {
-            fullname: '',
             email: '',
             password: '',
             error: {
@@ -48,12 +47,13 @@ class SignupComponent extends React.Component {
     submit(e) {
         e.preventDefault();
         let user = {
-            fullname: this.state.fullname,
             email: this.state.email,
             password: this.state.password
         }
         console.log("user", user)
-        firebaseApp.auth().createUserWithEmailAndPassword(user.email, user.password)
+        firebaseApp.auth().signInWithEmailAndPassword(user.email, user.password)
+        console.log("signIn Success")
+        
         .catch(error=>{
             console.log("error", error)
             this.setState({
@@ -66,16 +66,8 @@ class SignupComponent extends React.Component {
         
         return (
             <div >
-                <h1>Register</h1>
+                <h1>SignIn</h1>
                 <form onSubmit={this.submit} >
-                    <TextField
-                        hintText="Full Name"
-                        name="fullname"
-                        value={this.state.fullname}
-                        floatingLabelText="Full Name"
-                        onChange={this.inputChange}
-                        /><br />
-
                     <TextField
                         type="email"
                         hintText="email"
@@ -93,17 +85,17 @@ class SignupComponent extends React.Component {
                         floatingLabelText="Password"
                         onChange={this.inputChange}
                         /><br /><br />
-                    <RaisedButton type="submit" label="Register" primary={true} /> <br /><br />
+                    <RaisedButton type="submit" label="SignIn" primary={true} /> <br /><br />
                 </form>
                 <div>
                     {this.state.error.message}
-                    <Link to="/signin" > SignIn </Link>
+                    <Link to="/signup" > SignUp </Link>
                 </div>
             </div>
         )
     }
 }
 
-export default SignupComponent
+export default SignInComponent
 
 //export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);
