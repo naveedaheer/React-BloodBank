@@ -7,20 +7,21 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp} from '../Database/firebaseApp'
+import {userSignIn} from '../Actions'
 
-// const mapStateToProps = (state) => { 
-//     return {
-//         authReducer: state
-//     }
-// }
+const mapStateToProps = (state) => { 
+    return {
+        authReducer: state
+    }
+}
 
-// const mapDispatchToProps = (dispatch) => { 
-//     return {
-//         signUp: (data) => {
-//           //  dispatch(signUp(data))
-//         }
-//     }
-// }
+const mapDispatchToProps = (dispatch) => { 
+    return {
+        signIn: (data) => {
+            dispatch(userSignIn(data))
+        }
+    }
+}
 
 class SignInComponent extends React.Component {
     
@@ -50,15 +51,9 @@ class SignInComponent extends React.Component {
             password: this.state.password
         }
         console.log("user", user)
-        firebaseApp.auth().signInWithEmailAndPassword(user.email, user.password)
-        console.log("signIn Success")
-        
-        .catch(error=>{
-            console.log("error", error)
-            this.setState({
-                error
-            })
-        })
+
+       {this.props.signIn(user), console.log("this.props.signIn(user) success") } 
+
     }
 
     render() {
@@ -97,6 +92,6 @@ class SignInComponent extends React.Component {
     }
 }
 
-export default SignInComponent
+//export default SignInComponent
 
-//export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInComponent);
