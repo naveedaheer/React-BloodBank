@@ -4,30 +4,38 @@ import App from './App';
 import './index.css';
 import SignUp from './Components/SignUp'
 import SignIn from './Components/SignIn'
-import { Router, hashHistory, IndexRoute, browserHistory } from 'react-router';
-import { BrowserRouter, Route } from 'react-router-dom'
-import { Provider } from 'react-redux'
-//import { store } from './store/store'
+import Home from './Components/Home'
+import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {firebaseApp} from './Database/firebaseApp'
+import {Provider} from 'react-redux'
+import {store} from './Store/Store'
+import {logUser} from './Actions'
 
 firebaseApp.auth().onAuthStateChanged(user=>{
   if(user){
     console.log("user has loggedin or signedup" , user )
+    const {email} = user;
+    store.dispatch(logUser(email));
+    browserHistory.push('/home');
   }
   else{
     console.log("user has signed out or not loggedin")
+    browserHistory.replace('/signin')
   }
 })
 
 ReactDOM.render(
   <MuiThemeProvider>
-  <BrowserRouter browserHistory={browserHistory} >
-  <div>
+     <Provider store={store}>
+  <Router history={browserHistory} >
+ 
     <Route path="/signup" component={SignUp} ></Route>
     <Route path="/signin" component={SignIn} ></Route>
-    </div>
-  </BrowserRouter>
+    <Route path="/home" component={Home} ></Route>
+   
+  </Router>
+  </ Provider>
   </ MuiThemeProvider>
   ,
   document.getElementById('root')

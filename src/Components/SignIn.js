@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-//import { Link } from 'react-router';
+import { Link } from 'react-router';
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
 //import { DBfirebase } from '../database/DBfirebase'
@@ -7,7 +7,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp} from '../Database/firebaseApp'
-import {Link} from 'react-router-dom'
 
 // const mapStateToProps = (state) => { 
 //     return {
@@ -31,7 +30,7 @@ class SignInComponent extends React.Component {
             email: '',
             password: '',
             error: {
-                message: ''
+            message: ''
             }
         }
         this.submit = this.submit.bind(this);
@@ -66,6 +65,7 @@ class SignInComponent extends React.Component {
         
         return (
             <div >
+                <center>
                 <h1>SignIn</h1>
                 <form onSubmit={this.submit} >
                     <TextField
@@ -73,7 +73,7 @@ class SignInComponent extends React.Component {
                         hintText="email"
                         name="email"
                         value={this.state.email}
-                       floatingLabelText="Email"
+                        floatingLabelText="Email"
                         onChange={this.inputChange}
                         /><br />
 
@@ -91,6 +91,7 @@ class SignInComponent extends React.Component {
                     {this.state.error.message}
                     <Link to="/signup" > SignUp </Link>
                 </div>
+                </center>
             </div>
         )
     }

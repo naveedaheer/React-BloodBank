@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
-//import { Link } from 'react-router';
+import { Link } from 'react-router';
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
 //import { DBfirebase } from '../database/DBfirebase'
 //import { signUp } from '../store/action/auth'
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
-import {firebaseApp} from '../Database/firebaseApp'
-import {Link} from 'react-router-dom'
+import {firebaseApp, ref} from '../Database/firebaseApp'
+import {userSignUp} from '../Actions'
 
-// const mapStateToProps = (state) => { 
-//     return {
-//         authReducer: state
-//     }
-// }
+const mapStateToProps = (state) => { 
+    return {
+        signUpReducer: state
+    }
+}
 
-// const mapDispatchToProps = (dispatch) => { 
-//     return {
-//         signUp: (data) => {
-//           //  dispatch(signUp(data))
-//         }
-//     }
-// }
+const mapDispatchToProps = (dispatch) => { 
+    return {
+        signUp: (data) => {
+            dispatch(userSignUp(data))
+        }
+    }
+}
 
 class SignupComponent extends React.Component {
     
@@ -32,7 +32,7 @@ class SignupComponent extends React.Component {
             email: '',
             password: '',
             error: {
-                message: ''
+            message: ''
             }
         }
         this.submit = this.submit.bind(this);
@@ -52,6 +52,7 @@ class SignupComponent extends React.Component {
             email: this.state.email,
             password: this.state.password
         }
+        // store.dispatch(logUser(email));
         console.log("user", user)
         firebaseApp.auth().createUserWithEmailAndPassword(user.email, user.password)
         .catch(error=>{
@@ -60,12 +61,16 @@ class SignupComponent extends React.Component {
                 error
             })
         })
+
+        {this.props.signUp(user), console.log("this.props.signUp(user) success") }
+        
     }
 
     render() {
         
         return (
             <div >
+                <center>
                 <h1>Register</h1>
                 <form onSubmit={this.submit} >
                     <TextField
@@ -99,11 +104,12 @@ class SignupComponent extends React.Component {
                     {this.state.error.message}
                     <Link to="/signin" > SignIn </Link>
                 </div>
+                </center>
             </div>
         )
     }
 }
 
-export default SignupComponent
+//export default SignupComponent
 
-//export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);
