@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp, ref} from '../Database/firebaseApp'
-import {userSignUp} from '../Actions'
+import {userSignUp} from '../Store/Actions'
 
 const mapStateToProps = (state) => { 
     return {

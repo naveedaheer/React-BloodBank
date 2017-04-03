@@ -10,7 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {firebaseApp} from './Database/firebaseApp'
 import {Provider} from 'react-redux'
 import {store} from './Store/Store'
-import {logUser} from './Actions'
+import {logUser} from './Store/Actions'
 
 firebaseApp.auth().onAuthStateChanged(user=>{
   if(user){

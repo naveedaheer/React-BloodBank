@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp} from '../Database/firebaseApp'
-import {userSignIn} from '../Actions'
+import {userSignIn} from '../Store/Actions'
 
 const mapStateToProps = (state) => { 
     return {
@@ -82,6 +82,7 @@ class SignInComponent extends React.Component {
                         /><br /><br />
                     <RaisedButton type="submit" label="SignIn" primary={true} /> <br /><br />
                 </form>
+                {this.props.authReducer.sign}
                 <div>
                     {this.state.error.message}
                     <Link to="/signup" > SignUp </Link>
