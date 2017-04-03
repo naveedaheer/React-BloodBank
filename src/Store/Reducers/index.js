@@ -44,6 +44,7 @@ export default (state=user, action) =>{
         firebaseApp.auth().signInWithEmailAndPassword(action.Data.email, action.Data.password)
         .catch(error=>{
             console.log("error", error)
+            Object.assign({}, state, {isError:true, errorMessage:{error}})
         })
         // user={
         //     email,
@@ -51,9 +52,6 @@ export default (state=user, action) =>{
         // }
          return user;
 
-         case Constants.SIGN_IN_ERROR:
-       // const {email, password} = action;
-      return Error
         default:
         return state
     }
