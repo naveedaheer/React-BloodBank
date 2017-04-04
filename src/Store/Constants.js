@@ -1,8 +1,6 @@
 export class Constants {
 
 static HAS_SIGNED_IN = 'HAS_SIGNED_IN';
-static HAS_SIGNED_IN_SUCCESS = 'HAS_SIGNED_IN_SUCCESS';
-static HAS_SIGNED_IN_FAILED = 'HAS_SIGNED_IN_FAILED';
 
 static SIGN_UP = 'SIGN_UP';
 static SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
@@ -14,6 +12,6 @@ static SIGN_IN_FAILED = 'SIGN_IN_FAILED'
 
 static LOG_OUT = 'LOG_OUT';
 static LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS';
-static LOG_OUT_FAILED = 'SIGN_UP_FAILED';
+
 
 }
