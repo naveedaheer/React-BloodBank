@@ -10,10 +10,10 @@ export function hasLoggedIn(email){
 }
 
 //Sign Up
-export function userSignUp(Data){
+export function userSignUp(signUpData){
     const action = {
         type: Constants.SIGN_UP,
-        Data
+        signUpData
     }
     return action;
 }
@@ -36,10 +36,10 @@ export function userSignUpFailed(error){
 
 
 //SignIn
-export function userSignIn(Data){
+export function userSignIn(signInData){
     const action = {
         type: Constants.SIGN_IN,
-        Data
+        signInData
     }
     return action;
 }
