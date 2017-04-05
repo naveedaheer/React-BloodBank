@@ -16,34 +16,31 @@ export default (state=INITIAL_STATE, action) =>{
 
         case Constants.HAS_SIGNED_IN:
         const {email} = action;
-        return user = {
-            email,
-        }
+        return email
 
         case Constants.SIGN_UP:
-       return Object.assign({}, state, {user: action.data}, {})
+       return Object.assign({}, state, {user: action.signUpData} )
 
         case Constants.SIGN_UP_SUCCESS:
-       return Object.assign({}, state, {user: action.data})
+       return Object.assign({}, state, {user: action.authUserData} )
 
         case Constants.SIGN_UP_FAILED:
-       return Object.assign({}, state, {user: action.data})
+       return Object.assign({}, state, {user: action.signUpData}, {hasError:true}, {errorMessage:action.error} )
 
          case Constants.SIGN_IN:
-        return Object.assign({}, state, {isError:true, errorMessage:{error}})
+       return Object.assign({}, state, {user: action.signInData} )
 
         case Constants.SIGN_IN_SUCCESS:
-       return Object.assign({}, state, {user: action.data})
+       return Object.assign({}, state, {user: action.authUserData})
 
         case Constants.SIGN_IN_FAILED:
-       return Object.assign({}, state, {user: action.data})
+        return Object.assign({}, state, {hasError:true, errorMessage:action.error})
 
         case Constants.LOG_OUT:
        return Object.assign({}, state, {user: action.data})
 
         case Constants.LOG_OUT_SUCCESS:
        return Object.assign({}, state, {user: action.data})
-
 
         default:
         return state
