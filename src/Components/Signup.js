@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp, ref} from '../Database/firebaseApp'
-import {userSignUp} from '../Store/Actions'
+import { RegisterUser} from '../Store/Actions'
 
 const mapStateToProps = (state) => { 
     return {
@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => { 
     return {
-        signUp: (data) => {
-            dispatch(userSignUp(data))
+        signUpRequest: (data) => {
+            dispatch(RegisterUser(data))
         }
     }
 }
@@ -54,15 +54,15 @@ class SignupComponent extends React.Component {
         }
         // store.dispatch(logUser(email));
         console.log("user", user)
-        firebaseApp.auth().createUserWithEmailAndPassword(user.email, user.password)
-        .catch(error=>{
-            console.log("error", error)
-            this.setState({
-                error
-            })
-        })
+        // firebaseApp.auth().createUserWithEmailAndPassword(user.email, user.password)
+        // .catch(error=>{
+        //     console.log("error", error)
+        //     this.setState({
+        //         error
+        //     })
+        // })
 
-        {this.props.signUp(user), console.log("this.props.signUp(user) success") }
+        {this.props.signUpRequest(user), console.log("this.props.signUp(user) success") }
         
     }
 

@@ -11,9 +11,9 @@ export function RegisterUser(SignUpData) {
                 userRef.set({
                     uid : data.uid,
                     email: data.email,
-                    name: SignUpData.fullname 
+                    name: SignUpData.fullname
                 }, signUpSuccessData => {
-                    dispatch(userSignUpSuccess({ uid: data.uid, userEmail: data.email, name: SignUpData.name, gender: SignUpData.gender == 1 ? "Male" : "Female", address: SignUpData.address, bloodType: SignUpData.bloodType,  }));
+                    dispatch(userSignUpSuccess({ uid : data.uid, email: data.email, name: SignUpData.fullname }));
                 });
             })
             .catch((error) => {
