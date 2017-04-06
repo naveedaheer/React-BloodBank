@@ -7,10 +7,11 @@ const INITIAL_STATE = {
     errorMessage: {},
     hasLoggedIn: false,
     hasRegistered: false,
+    user:{}
 }
 
-export default (state=INITIAL_STATE, action) =>{
-    console.log("action in reducer", action)
+export var authReducer = (state=INITIAL_STATE, action) => {
+    console.log("action in reducer action.error", action.error)
 
     switch(action.type){
 

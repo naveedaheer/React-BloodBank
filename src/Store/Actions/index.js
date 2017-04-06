@@ -3,9 +3,10 @@ import {firebaseApp} from '../../Database/firebaseApp'
 
 
 export function RegisterUser(SignUpData) {
+    console.log("SignUpData", SignUpData)
     return dispatch => {
         dispatch(userSignUp());
-        firebaseApp.Auth().createUserWithEmailAndPassword(SignUpData.email, SignUpData.password)
+        firebaseApp.auth().createUserWithEmailAndPassword(SignUpData.email, SignUpData.password)
             .then((data) => {
                 const userRef = firebaseApp.database.ref('/users/' + data.uid);
                 userRef.set({
@@ -14,6 +15,7 @@ export function RegisterUser(SignUpData) {
                     name: SignUpData.fullname
                 }, signUpSuccessData => {
                     dispatch(userSignUpSuccess({ uid : data.uid, email: data.email, name: SignUpData.fullname }));
+                    
                 });
             })
             .catch((error) => {

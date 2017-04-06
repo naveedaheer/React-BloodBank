@@ -8,8 +8,10 @@ import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp, ref} from '../Database/firebaseApp'
 import { RegisterUser} from '../Store/Actions'
+import { userSignUp } from '../Store/Actions'
 
 const mapStateToProps = (state) => { 
+    console.log("state in mapStateToProps", state)
     return {
         signUpReducer: state
     }
@@ -18,7 +20,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => { 
     return {
         signUpRequest: (data) => {
-            dispatch(RegisterUser(data))
+            dispatch(userSignUp(data))
         }
     }
 }
@@ -62,7 +64,7 @@ class SignupComponent extends React.Component {
         //     })
         // })
 
-        {this.props.signUpRequest(user), console.log("this.props.signUp(user) success") }
+        {this.props.signUpRequest(user) }
         
     }
 
