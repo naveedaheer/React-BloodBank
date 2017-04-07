@@ -3,6 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Link, browserHistory} from "react-router"
 import {firebaseApp} from '../Database/firebaseApp'
 import {connect} from 'react-redux'
+import store from '../Store/Store'
+import AllActions from '../Store/Actions/AllActions'
 
 var styles = {
   appBar: {
@@ -32,8 +34,8 @@ class Home extends React.Component{
         return(
             <div>
                 <h1>Welcome to Home</h1>
-                {console.log("this.props", this.props.userData.reducer.name)}
-                {this.props.userData.reducer.name}<br />
+               
+               
                 <RaisedButton style={styles.buttonInAppBar} onClick={this.SignOut.bind(this)} label="Logout" primary={false} />
             </div>
         )
