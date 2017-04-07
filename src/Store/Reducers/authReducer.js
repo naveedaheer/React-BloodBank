@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 }
 
 export var authReducer = (state=INITIAL_STATE, action) => {
-    console.log("action in reducer action.error", action.error)
+    console.log("action in reducer action.error", action)
 
     switch(action.type){
 
