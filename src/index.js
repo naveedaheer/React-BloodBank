@@ -10,7 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {firebaseApp} from './Database/firebaseApp'
 import {Provider} from 'react-redux'
 import store from './Store/Store'
-import {logUser} from './Store/Actions'
+import AllActions from './Store/Actions/AllActions'
 
 ReactDOM.render(
   <MuiThemeProvider>
@@ -28,15 +28,15 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// firebaseApp.auth().onAuthStateChanged(user=>{
-//   if(user){
-//     console.log("user has loggedin or signedup" , user )
-//     const {email} = user;
-//     store.dispatch(logUser(email));
-//     browserHistory.push('/home');
-//   }
-//   else{
-//     console.log("user has signed out or not loggedin")
-//     browserHistory.replace('/signin')
-//   }
-// })
+firebaseApp.auth().onAuthStateChanged(user=>{
+  if(user){
+    console.log("user has loggedin or signedup" , user )
+    const {email} = user;
+    store.dispatch(AllActions.hasLoggedIn(email));
+    browserHistory.push('/home'); 
+  }
+  else{
+    console.log("user has signed out or not loggedin")
+    browserHistory.replace('/signin')
+  }
+})
