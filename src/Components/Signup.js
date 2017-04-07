@@ -7,8 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp, ref} from '../Database/firebaseApp'
-import { RegisterUser} from '../Store/Actions'
-import { userSignUp } from '../Store/Actions'
+import { RegisterUser} from '../Store/Actions/AllActions'
 
 const mapStateToProps = (state) => { 
     console.log("state in mapStateToProps", state)
@@ -20,7 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => { 
     return {
         signUpRequest: (data) => {
-            dispatch(userSignUp(data))
+            dispatch(RegisterUser(data))
         }
     }
 }
@@ -103,7 +102,7 @@ class SignupComponent extends React.Component {
                     <RaisedButton type="submit" label="Register" primary={true} /> <br /><br />
                 </form>
                 <div>
-                    {this.state.error.message}
+                    {this.props.signUpReducer.errorMessage}
                     <Link to="/signin" > SignIn </Link>
                 </div>
                 </center>
