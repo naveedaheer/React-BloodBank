@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp} from '../Database/firebaseApp'
-import {userSignIn} from '../Store/Actions'
+import AllActions from '../Store/Actions/AllActions'
 
 const mapStateToProps = (state) => { 
     return {
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => { 
     return {
         signIn: (data) => {
-            dispatch(userSignIn(data))
+            dispatch(AllActions.userSignIn(data))
         }
     }
 }
