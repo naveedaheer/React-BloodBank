@@ -3,32 +3,6 @@ import {firebaseApp} from '../../Database/firebaseApp'
 import {browserHistory} from 'react-router'
 
 
-export function RegisterUser(SignUpData) {
-    console.log("RegisterUser(SignUpData)", SignUpData)
-    return (dispatch) => {
-        dispatch(AllActions.userSignUp());
-        firebaseApp.auth().createUserWithEmailAndPassword(SignUpData.email, SignUpData.password)
-            .then((data) => {
-                const userRef = firebaseApp.database().ref('userInfo');
-                userRef.push({
-                    uid: data.uid,
-                    email: data.email,
-                    name: SignUpData.fullname
-                }
-                
-                , signUpSuccessData => {
-                    dispatch(AllActions.userSignUpSuccess({ uid: data.uid, email: SignUpData.email, name: SignUpData.fullname }));
-                    browserHistory.replace('/home');
-        
-                });
-            })
-            .catch((error) => {
-                console.log("Something Went Wrong, Please Try Again ", error);
-                dispatch(AllActions.userSignUpFailed (error));
-            });
-    }   
-}
-
 export default class AllActions{
 
 //LoggedIn
