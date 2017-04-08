@@ -51,28 +51,28 @@ static userSignUpFailed(error){
 
 
 //SignIn
-static userSignIn(signInData){
-    const action = {
+static userSignIn(){
+    return {
         type: Constants.SIGN_IN,
-        signInData
+    
     }
-    return action;
+    
 }
 
 static userSignInSuccess(authUserData){
-    const action = {
+return {
         type: Constants.SIGN_IN_SUCCESS,
         authUserData
     }
-    return action;
+    
 }
 
 static userSignInFailed(error){
-    const action = {
+    return {
         type: Constants.SIGN_IN_FAILED,
         error
     }
-    return action;
+
 }
 
 static userLogOut(){

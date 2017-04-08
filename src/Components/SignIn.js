@@ -8,6 +8,7 @@ import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp} from '../Database/firebaseApp'
 import AllActions from '../Store/Actions/AllActions'
+import {LoginUser} from '../Store/Actions/DatabaseActions'
 
 const mapStateToProps = (state) => { 
     return {
@@ -18,7 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => { 
     return {
         signIn: (data) => {
-            dispatch(AllActions.userSignIn(data))
+            dispatch(LoginUser(data))
         }
     }
 }
@@ -52,7 +53,7 @@ class SignInComponent extends React.Component {
         }
         console.log("user", user)
 
-       {this.props.signIn(user), console.log("this.props.signIn(user) success") } 
+       {this.props.signIn(user)} 
 
     }
 
