@@ -18,7 +18,6 @@ import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-ro
 ReactDOM.render(
     <MuiThemeProvider>
         <Provider store={store}>
-            <firebaseApp />
             <Router history={browserHistory}>
                 
                 <Route path="/" component={HeaderOuter}>
