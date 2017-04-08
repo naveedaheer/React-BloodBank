@@ -1,29 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux'
 import App from './App';
-import './index.css';
-import SignUp from './Components/SignUp'
-import SignIn from './Components/SignIn'
-import Home from './Components/Home'
-import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router';
+import Home from './Components/Home';
+import SignUp from './Components/SignUp';
+import Login from './Components/SignIn';
+import RegisterDonor from './Components/RegisterDonor';
+import DonorList from './Components/DonorList';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import HeaderOuter from "./Components/HeaderOuter"
+import HeaderInner from "./Components/HeaderInner"
+import Thankyou from "./Components/Thankyou"
 import {firebaseApp} from './Database/firebaseApp'
-import {Provider} from 'react-redux'
 import store from './Store/Store'
 import AllActions from './Store/Actions/AllActions'
+import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-router';
 
 ReactDOM.render(
-  <MuiThemeProvider>
-     <Provider store={store}>
-  <Router history={browserHistory} >
- 
-    <Route path="/signup" component={SignUp} ></Route>
-    <Route path="/signin" component={SignIn} ></Route>
-    <Route path="/home" component={Home} ></Route>
-   
-  </Router>
-  </ Provider>
-  </ MuiThemeProvider>
+    <MuiThemeProvider>
+        <Provider store={store}>
+            <Router history={browserHistory}>
+                
+                <Route path="/" component={HeaderOuter}>
+                <Route path="/login" component={Login}></Route>
+                    <Route path="/app" component={App} />
+                    <IndexRoute component={SignUp}> </IndexRoute>
+                </Route>
+                
+                <Route path="/home" component={HeaderInner}>
+                <IndexRoute component={Home}> </IndexRoute>
+                <Route path="registerDonor" component={RegisterDonor}></Route>
+                <Route path="donorList" component={DonorList}></Route>
+                <Route path="thankyou" component={Thankyou}></Route>
+                
+                </Route>
+            </Router>
+        </Provider>
+    </MuiThemeProvider>
   ,
   document.getElementById('root')
 );
