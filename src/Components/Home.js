@@ -1,50 +1,34 @@
-import React, { Component } from 'react'
-import RaisedButton from 'material-ui/RaisedButton';
-import {Link, browserHistory} from "react-router"
-import {firebaseApp} from '../Database/firebaseApp'
-import {connect} from 'react-redux'
-import store from '../Store/Store'
-import AllActions from '../Store/Actions/AllActions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
-var styles = {
-  appBar: {
-   // backgroundColor: '#009688',
-    backgroundColor: '#E53935',
-     minHeight:50,
-     //height:300
-  },
-  
-  buttonInAppBar : {
-  margin: 12,
-  backgroundColor: "transparent"
-},
-
-}
-
-
-
-class Home extends React.Component{
-
-    SignOut(){
-    firebaseApp.auth().signOut();
-    browserHistory.replace('/signin');
+class Home extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+        }
     }
-    
-    render(){
-        return(
-            <div>
-                <h1>Welcome to Home</h1>
-               
-               
-                <RaisedButton style={styles.buttonInAppBar} onClick={this.SignOut.bind(this)} label="Logout" primary={false} />
-            </div>
-        )
+
+
+    render() {
+        return (
+            <div >
+                <h1>Welcome</h1>
+                    <br /><br /><br /><br />
+                    <div>
+                        <center>
+                            {this.props.children}
+                        <img src="http://www.neomobile-jobs.com/wp-content/uploads/2014/07/blood-donation-700x314.jpg" alt="" />
+                    </center>
+                    </div>
+                    </div>
+        );
     }
 }
 
-function mapStateToProps(state){
-    console.log("mapStateToProps State", state)
-    return {userData: state}
+const mapStateToProps = (state) => {
 }
 
-export default connect(mapStateToProps,null)(Home)
+const mapDispatchToProps = (dispatch) => {
+}
+export default Home;
+//export default connect(mapStateToProps, mapDispatchToProps)(Home);
