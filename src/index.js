@@ -10,7 +10,6 @@ import DonorList from './Components/DonorList';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HeaderOuter from "./Components/HeaderOuter"
 import HeaderInner from "./Components/HeaderInner"
-import Thankyou from "./Components/Thankyou"
 import {firebaseApp} from './Database/firebaseApp'
 import store from './Store/Store'
 import AllActions from './Store/Actions/AllActions'
@@ -19,19 +18,20 @@ import { Router, Route, hashHistory, IndexRoute, browserHistory } from 'react-ro
 ReactDOM.render(
     <MuiThemeProvider>
         <Provider store={store}>
+            <firebaseApp />
             <Router history={browserHistory}>
                 
                 <Route path="/" component={HeaderOuter}>
                 <Route path="/login" component={Login}></Route>
+                <Route path="/signup" component={SignUp}></Route>
                     <Route path="/app" component={App} />
-                    <IndexRoute component={SignUp}> </IndexRoute>
+                    <IndexRoute component={Login}> </IndexRoute>
                 </Route>
                 
                 <Route path="/home" component={HeaderInner}>
                 <IndexRoute component={Home}> </IndexRoute>
                 <Route path="registerDonor" component={RegisterDonor}></Route>
                 <Route path="donorList" component={DonorList}></Route>
-                <Route path="thankyou" component={Thankyou}></Route>
                 
                 </Route>
             </Router>
@@ -50,6 +50,6 @@ firebaseApp.auth().onAuthStateChanged(user=>{
   }
   else{
     console.log("user has signed out or not loggedin")
-    browserHistory.replace('/signin')
+    browserHistory.replace('/login')
   }
 })
