@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router';
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
-//import { DBfirebase } from '../database/DBfirebase'
-//import { signUp } from '../store/action/auth'
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp, ref} from '../Database/firebaseApp'
-import { RegisterUser} from '../Store/Actions/AllActions'
+import { RegisterUser} from '../Store/Actions/DatabaseActions'
 
 const mapStateToProps = (state) => { 
     console.log("state in mapStateToProps", state)
@@ -53,16 +51,8 @@ class SignupComponent extends React.Component {
             email: this.state.email,
             password: this.state.password
         }
-        // store.dispatch(logUser(email));
         console.log("user", user)
-        // firebaseApp.auth().createUserWithEmailAndPassword(user.email, user.password)
-        // .catch(error=>{
-        //     console.log("error", error)
-        //     this.setState({
-        //         error
-        //     })
-        // })
-
+      
         {this.props.signUpRequest(user) }
         
     }
@@ -110,7 +100,5 @@ class SignupComponent extends React.Component {
         )
     }
 }
-
-//export default SignupComponent
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupComponent);
