@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router';
 import { connect } from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton';
-//import { DBfirebase } from '../database/DBfirebase'
-//import { signUp } from '../store/action/auth'
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import {firebaseApp} from '../Database/firebaseApp'
@@ -93,7 +91,5 @@ class SignInComponent extends React.Component {
         )
     }
 }
-
-//export default SignInComponent
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInComponent);
