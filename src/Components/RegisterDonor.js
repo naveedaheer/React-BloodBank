@@ -7,6 +7,7 @@ import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import {RegisterNewDonor} from '../Store/Actions/DatabaseActions'
 
 class RegisterDonor extends React.Component {
     constructor() {
@@ -72,6 +73,7 @@ else if(this.state.bloodgroup == "O+" || this.state.bloodgroup == "O-"){
             possibleBloodGroups: possibleGroups
         }
         console.log(donor)
+        {this.props.RegisterDonorRequest(donor)}
 
     }
 
@@ -148,15 +150,15 @@ else if(this.state.bloodgroup == "O+" || this.state.bloodgroup == "O-"){
 
 const mapStateToProps = (state) => { 
     return {
-       // authReducer: state
+        donorReducer: state
     }
 }
 const mapDispatchToProps = (dispatch) => { 
     return {
-        signUp: (data) => {
-          //  dispatch(signUp(data))
+        RegisterDonorRequest: (data) => {
+            dispatch(RegisterNewDonor(data))
         }
     }
 }
-export default RegisterDonor;
-//export default connect(mapStateToProps, mapDispatchToProps)(Register);
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterDonor);
