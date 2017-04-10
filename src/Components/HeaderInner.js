@@ -44,8 +44,8 @@ firebase.auth().signOut().then(function() {
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                 >
                 <Link to="/home" >   <RaisedButton style={styles.buttonInAppBar} label="HOME" primary={false} /></Link>
-                      <Link to="/home/registerDonor" >   <RaisedButton style={styles.buttonInAppBar} label="Register For Donate Blood" primary={false} /></Link>
-                       <Link to="/home/donorList" >  <RaisedButton style={styles.buttonInAppBar} label="Need Blood" primary={false} /></Link>
+                      <Link to="/home/registerDonor" >   <RaisedButton style={styles.buttonInAppBar} label="Donate Blood" primary={false} /></Link>
+                       <Link to="/home/donorList" >  <RaisedButton style={styles.buttonInAppBar} label="List" primary={false} /></Link>
  <RaisedButton style={styles.buttonInAppBar} onClick={this.logoutBtn.bind(this)} label="Logout" primary={false} />
                 </AppBar >
                 {this.props.children}
