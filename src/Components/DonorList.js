@@ -4,6 +4,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux'
+import {ViewDonorsList} from '../Store/Actions/DatabaseActions'
 
 
 const style = {
@@ -30,53 +31,49 @@ const table = {
    color : '#009999'
 };
   
+var donorsAvailable
+
 class DonorList extends Component {
     constructor(){
         super();
         this.state = {
-            
-            arr: []
+            donors: []
         }
 
          this.onSearch = this.onSearch.bind(this)
     }
+
  
 
      onSearch(e) {
-        let _self = this;
-        e.preventDefault()
-        let ref = firebase.database().ref().child('/donors');
-        _self.arr = [];
-       
-    // ref.orderByChild(this.refs.selectedBlood.value).equalTo(true).once('value', function (snapshot) {
-       //   ref.orderByChild('bloodgroup').equalTo("A+").once('value', function (snapshot) {
+         console.log("selected blood group", this.refs.selectedBlood.value)
+                    {this.props.findDonor(this.refs.selectedBlood.value)}  
+                    console.log("donorsAvailable", donorsAvailable)     
+                }
 
-          ref.orderByChild('bloodgroup').equalTo(this.refs.selectedBlood.value).once('value', function (snapshot) {
- 
-            snapshot.forEach(childSnapshot => {
 
-                _self.arr.push(childSnapshot.val())
-            })
-            _self.props.findDonor(_self.arr)
-            _self.setState({
-                arr: _self.props.storeReducer.user 
-            })
-        });
-  }
+    componentDidMount() {
 
+        setTimeout(() => {
+            this.props.findDonor('O+');
+            this.state.donors = this.props.donorslist
+            donorsAvailable = this.props.donorslist
+        }, 10);
+}
     
     render() {
+      
         return (
             <div >
                 <h1>Donor List</h1>
             <center> 
                <form onSubmit={this.onSearch}>
                  <select 
+                 onChange={this.onSearch}
                         name="bloodgroup"
-                        //value={this.props.signUpState.bloodgroup}
                         required
                         ref="selectedBlood"
-                       // onChange={this.props._inputHandler}
+                        defaultValue="O+"
                        >
                         <option>Blood Type   </option>
                         <option value="A+">A+   </option>
@@ -88,14 +85,14 @@ class DonorList extends Component {
                         <option value="O-">O-   </option>
                         <option value="AB-">AB-</option>
                     </select>
-                    <button onClick={this.onSearch} type="submit" > Find </button>
+                    
                       </form>
                     <br />
                     <br />
       
                     </ center>           
 
-{this.state.arr.map((m, i) => {
+     {/*{this.props.donorReducer.donor.map((m, i) => {
                     return(
                       <div>
                     
@@ -110,7 +107,7 @@ class DonorList extends Component {
   )
                 })
                   
-                }
+                }*/}
 
             </div>
         );
@@ -118,16 +115,18 @@ class DonorList extends Component {
 }
 
 const mapStateToProps = (state) => { 
-     console.log(state.UserReducer)
+     console.log("state.donorReducer.donor" ,state.donorReducer.donor)
     return {
-        storeReducer: state.UserReducer
+        donorReducer: state.donorReducer,
+        donorslist: state.donorReducer.donor,
     }
+    
 }
 const mapDispatchToProps = (dispatch) => {
         return {
-        findDonor: (data) => {
-            console.log(data)
-           // dispatch(FindDonors(data))
+        findDonor: (selectedBlood) => {
+            console.log("selectedBlood", selectedBlood)
+            dispatch(ViewDonorsList(selectedBlood))
         }
     }
 }
