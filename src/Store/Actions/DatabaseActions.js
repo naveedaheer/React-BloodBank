@@ -27,7 +27,22 @@ export function RegisterUser(SignUpData) {
             });
     }   
 }
-
+export function RegisterNewDonor(RegisterDonorData){
+    console.log("RegisterDonor(RegisterDonorData)", RegisterDonorData)
+    return (dispatch) => {
+        dispatch(AllActions.registerDonor());
+        firebaseApp.database().ref('donors').push(RegisterDonorData)
+        .then((data)=>{
+            console.log("Donor Added Successfully")
+            dispatch(AllActions.registerDonorSuccess(data));
+            browserHistory.replace('/home/donorList');
+        })
+        .catch((error)=>{
+            console.log("Error to register Donor", error)
+            dispatch(AllActions.registerDonorFailed(error))
+        })
+    }
+}
 export function LoginUser(LogInData){
         console.log("LoginUser(LogInData)", LogInData)
         return (dispatch) =>{
@@ -49,5 +64,22 @@ export function LoginUser(LogInData){
         }
 }
 
-export function RegisterDonor(){}
-export function ViewDonors(){}
+
+export function ViewDonorsList(bloodGroup){
+    console.log("ViewDonorsList(bloodGroup)", bloodGroup)
+    return (dispatch)=>{
+        dispatch(AllActions.viewDonor());
+        let ref = firebaseApp.database().ref().child('/donors');
+          ref.orderByChild('bloodgroup').equalTo(bloodGroup).once('value', function (snapshot) {
+              let donorList = [];
+            snapshot.forEach(childSnapshot => {
+                donorList.push(childSnapshot.val())
+            })
+            console.log("donorsList", donorList)
+            dispatch(AllActions.viewDonorSuccess(donorList))
+        })
+        // .catch((error)=>{
+        //     console.log("error in getting DonorsList", error)
+        // })
+    }
+}
