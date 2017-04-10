@@ -89,4 +89,26 @@ static userLogOutSuccess(){
     return action;
 }
 
+static registerDonor(){
+    return {
+        type: Constants.REGISTER_DONOR
+    }
+}
+
+
+static registerDonorSucces(RegisterDonorData){
+    return {
+        type: Constants.REGISTER_DONOR_SUCCESS,
+        RegisterDonorData
+    }
+}
+
+
+static registerDonorFailed(error){
+    return {
+        type: Constants.REGISTER_DONOR,
+        error
+    }
+}
+
 }
