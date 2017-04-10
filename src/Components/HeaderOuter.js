@@ -20,7 +20,7 @@ export default class HeaderOuter extends React.Component {
                 style={styles.appBar}
                     title="Aheer Blood Bank"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
-                    
+                    showMenuIconButton={false}
                 />
 
                 {this.props.children}

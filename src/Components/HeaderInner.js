@@ -39,7 +39,7 @@ firebase.auth().signOut().then(function() {
             <div>
                 <AppBar
                 style={styles.appBar}
-               
+               showMenuIconButton={false}
                     title="Aheer Blood Bank"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                 >
