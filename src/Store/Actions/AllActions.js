@@ -96,7 +96,7 @@ static registerDonor(){
 }
 
 
-static registerDonorSucces(RegisterDonorData){
+static registerDonorSuccess(RegisterDonorData){
     return {
         type: Constants.REGISTER_DONOR_SUCCESS,
         RegisterDonorData
@@ -110,5 +110,28 @@ static registerDonorFailed(error){
         error
     }
 }
+
+static viewDonor(){
+    return {
+        type: Constants.VIEW_DONOR
+    }
+}
+
+static viewDonorSuccess(donorsList){
+    return {
+        type: Constants.VIEW_DONOR_SUCCESS,
+        donorsList
+    }
+}
+
+
+static viewDonorFailed(error){
+    return {
+        type: Constants.VIEW_DONOR_FAILED,
+        error
+    }
+}
+
+
 
 }
