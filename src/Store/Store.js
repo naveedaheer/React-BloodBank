@@ -4,10 +4,11 @@ import {createLogger} from "redux-logger";
 //import logger from 'redux-logger'
 
 //import rootReducer from './Reducers/rootReducer'
-import {authReducer} from "./Reducers/authReducer"
+import {authReducer, donorReducer} from "./Reducers/reducer"
 
 const rootReducer = combineReducers({
-    authReducer
+    authReducer,
+    donorReducer
 })
 const logger = createLogger();
 
