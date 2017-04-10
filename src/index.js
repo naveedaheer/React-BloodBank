@@ -45,7 +45,7 @@ firebaseApp.auth().onAuthStateChanged(user=>{
     console.log("user has loggedin or signedup" , user )
     const {email} = user;
     store.dispatch(AllActions.hasLoggedIn(email));
-    browserHistory.push('/home'); 
+   // browserHistory.replace('/home/donorList'); 
   }
   else{
     console.log("user has signed out or not loggedin")
