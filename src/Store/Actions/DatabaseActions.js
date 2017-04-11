@@ -14,7 +14,6 @@ export function RegisterUser(SignUpData) {
                     email: data.email,
                     name: SignUpData.fullname
                 }
-
                     , signUpSuccessData => {
                         dispatch(AllActions.userSignUpSuccess({ uid: data.uid, email: SignUpData.email, name: SignUpData.fullname }));
                         browserHistory.replace('/home');
@@ -27,6 +26,7 @@ export function RegisterUser(SignUpData) {
             });
     }
 }
+
 export function RegisterNewDonor(RegisterDonorData) {
     console.log("RegisterDonor(RegisterDonorData)", RegisterDonorData)
     return (dispatch) => {
@@ -43,6 +43,7 @@ export function RegisterNewDonor(RegisterDonorData) {
             })
     }
 }
+
 export function LoginUser(LogInData) {
     console.log("LoginUser(LogInData)", LogInData)
     return (dispatch) => {
@@ -63,7 +64,6 @@ export function LoginUser(LogInData) {
             })
     }
 }
-
 
 export function ViewDonorsList(bloodGroup) {
     console.log("ViewDonorsList(bloodGroup)", bloodGroup)
