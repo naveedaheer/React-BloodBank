@@ -4,53 +4,50 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Paper from 'material-ui/Paper';
 import { connect } from 'react-redux'
-import {ViewDonorsList} from '../Store/Actions/DatabaseActions'
+import { ViewDonorsList } from '../Store/Actions/DatabaseActions'
 
 
 const style = {
-  //height: 100,
-  //width: 100,
-  margin: 20,
-  textAlign: 'center',
-  // display: 'inline-block',
-  display: 'block-inline',
-  height: 'auto',
-  width: 'auto',
-  padding: 20
-  
+    //height: 100,
+    //width: 100,
+    margin: 20,
+    textAlign: 'center',
+    // display: 'inline-block',
+    display: 'block-inline',
+    height: 'auto',
+    width: 'auto',
+    padding: 20,
+    backgroundColor: "#EF9A9A"
+
 };
 
 const table = {
-  height: 190,
-  width: 280,
-  margin: 20,
-  padding: 20,
-  textAlign: 'center',
-  display: 'inline-block',
-   background : 'wheat',
-   color : '#009999'
+    height: 190,
+    width: 280,
+    margin: 20,
+    padding: 20,
+    textAlign: 'center',
+    display: 'inline-block',
+    background: 'wheat',
+    color: '#009999'
 };
-  
+
 var donorsAvailable
 
 class DonorList extends Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             donors: []
         }
+        this.onSearch = this.onSearch.bind(this)
+     }
 
-         this.onSearch = this.onSearch.bind(this)
+
+
+    onSearch(e) {
+        { this.props.findDonor(this.refs.selectedBlood.value) }
     }
-
- 
-
-     onSearch(e) {
-         console.log("selected blood group", this.refs.selectedBlood.value)
-                    {this.props.findDonor(this.refs.selectedBlood.value)}  
-                    console.log("donorsAvailable", donorsAvailable)     
-                }
-
 
     componentDidMount() {
 
@@ -59,71 +56,71 @@ class DonorList extends Component {
             this.state.donors = this.props.donorslist
             donorsAvailable = this.props.donorslist
         }, 10);
-}
-    
+    }
+
     render() {
-      
+
         return (
             <div >
                 <h1>Donor List</h1>
-            <center> 
-               <form onSubmit={this.onSearch}>
-                 <select 
-                 onChange={this.onSearch}
-                        name="bloodgroup"
-                        required
-                        ref="selectedBlood"
-                        defaultValue="O+"
-                       >
-                        <option>Blood Type   </option>
-                        <option value="A+">A+   </option>
-                        <option value="B+">B+   </option>
-                        <option value="O+">O+   </option>
-                        <option value="AB+">AB+</option>
-                        <option value="A-">A-   </option>
-                        <option value="B-">B-   </option>
-                        <option value="O-">O-   </option>
-                        <option value="AB-">AB-</option>
-                    </select>
-                    
-                      </form>
-                    <br />
-                    <br />
-      
-                    </ center>           
+                <center>
+                    <form onSubmit={this.onSearch}>
+                        <select
+                            onChange={this.onSearch}
+                            name="bloodgroup"
+                            required
+                            ref="selectedBlood"
+                            defaultValue="O+"
+                        >
+                            <option>Blood Type   </option>
+                            <option value="A+">A+   </option>
+                            <option value="B+">B+   </option>
+                            <option value="O+">O+   </option>
+                            <option value="AB+">AB+</option>
+                            <option value="A-">A-   </option>
+                            <option value="B-">B-   </option>
+                            <option value="O-">O-   </option>
+                            <option value="AB-">AB-</option>
+                        </select>
 
-     {/*{this.props.donorReducer.donor.map((m, i) => {
-                    return(
-                      <div>
-                    
-                        <Paper style={style} zDepth={5} > 
-                        >Blood: {m.bloodgroup}<br />
-                        >Mobile: {m.mobile}<br /> 
-                        >Name: {m.fullname}<br />
-                        >Age: {m.age}<br />
-                        >Address: {m.address}<br />
-                        </Paper>                     
-                     </div>
-  )
-                })
-                  
-                }*/}
+                    </form>
+                    <br />
+                    <br />
+
+                </ center>
+
+                {
+                    this.props.donorReducer.donor.map((m, i) => {
+                        return (
+                            <div>
+
+                                <Paper key={i} style={style} zDepth={5} >
+                                    >Blood: {m.bloodgroup}<br />
+                                    >Mobile: {m.mobile}<br />
+                                    >Name: {m.fullname}<br />
+                                    >Age: {m.age}<br />
+                                    >Address: {m.address}<br />
+                                </Paper>
+                            </div>
+                        )
+                    })
+                }
 
             </div>
         );
     }
 }
 
-const mapStateToProps = (state) => { 
-     console.log("state.donorReducer.donor" ,state.donorReducer.donor)
+const mapStateToProps = (state) => {
+
     return {
         donorReducer: state.donorReducer,
         donorslist: state.donorReducer.donor,
     }
-    
+
 }
 const mapDispatchToProps = (dispatch) => {
-        return {
+    return {
         findDonor: (selectedBlood) => {
             console.log("selectedBlood", selectedBlood)
             dispatch(ViewDonorsList(selectedBlood))

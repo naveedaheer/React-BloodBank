@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import App from './App';
 import Home from './Components/Home';
 import SignUp from './Components/SignUp';
 import Login from './Components/SignIn';
@@ -23,7 +22,6 @@ ReactDOM.render(
                 <Route path="/" component={HeaderOuter}>
                 <Route path="/login" component={Login}></Route>
                 <Route path="/signup" component={SignUp}></Route>
-                    <Route path="/app" component={App} />
                     <IndexRoute component={Login}> </IndexRoute>
                 </Route>
                 
@@ -45,7 +43,7 @@ firebaseApp.auth().onAuthStateChanged(user=>{
     console.log("user has loggedin or signedup" , user )
     const {email} = user;
     store.dispatch(AllActions.hasLoggedIn(email));
-   // browserHistory.replace('/home/donorList'); 
+    browserHistory.replace('/home/donorList'); 
   }
   else{
     console.log("user has signed out or not loggedin")

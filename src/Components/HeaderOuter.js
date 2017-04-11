@@ -2,14 +2,14 @@ import React from "react"
 import AppBar from 'material-ui/AppBar';
 
 var styles = {
-  appBar: {
-    backgroundColor: '#E53935',
-     minHeight:50,
-     color: "black"
-  },
-  tabs: {
-    width: '100%',
-  },
+    appBar: {
+        backgroundColor: '#E53935',
+        minHeight: 50,
+        color: "black"
+    },
+    tabs: {
+        width: '100%',
+    },
 }
 
 export default class HeaderOuter extends React.Component {
@@ -17,7 +17,7 @@ export default class HeaderOuter extends React.Component {
         return (
             <div>
                 <AppBar
-                style={styles.appBar}
+                    style={styles.appBar}
                     title="Aheer Blood Bank"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     showMenuIconButton={false}

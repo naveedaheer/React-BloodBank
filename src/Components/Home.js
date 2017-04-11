@@ -8,27 +8,21 @@ class Home extends Component {
         }
     }
 
-
     render() {
         return (
             <div >
                 <h1>Welcome</h1>
-                    <br /><br /><br /><br />
-                    <div>
-                        <center>
-                            {this.props.children}
+                <br /><br /><br /><br />
+                <div>
+                    <center>
+                        {this.props.children}
                         <img src="http://www.neomobile-jobs.com/wp-content/uploads/2014/07/blood-donation-700x314.jpg" alt="" />
                     </center>
-                    </div>
-                    </div>
+                </div>
+            </div>
         );
     }
 }
 
-const mapStateToProps = (state) => {
-}
-
-const mapDispatchToProps = (dispatch) => {
-}
 export default Home;
-//export default connect(mapStateToProps, mapDispatchToProps)(Home);
+
