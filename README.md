@@ -1,3 +1,8 @@
+https://aheer-blood-bank.firebaseapp.com/
+Login Details
+Email: test@test.com
+Password: 123456
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
